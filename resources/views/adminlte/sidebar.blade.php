@@ -20,17 +20,6 @@
          </div>
 
          <!-- SidebarSearch Form -->
-         <div class="form-inline">
-             <div class="input-group" data-widget="sidebar-search">
-                 <input class="form-control form-control-sidebar" type="search" placeholder="Search"
-                     aria-label="Search">
-                 <div class="input-group-append">
-                     <button class="btn btn-sidebar">
-                         <i class="fas fa-search fa-fw"></i>
-                     </button>
-                 </div>
-             </div>
-         </div>
 
          <!-- Sidebar Menu -->
          <nav class="mt-2">
@@ -42,31 +31,48 @@
                      <a href="#" class="nav-link active">
                          <i class="nav-icon fas fa-tachometer-alt"></i>
                          <p>
-                             Starter Pages
+                             Dashboard
                              <i class="right fas fa-angle-left"></i>
                          </p>
                      </a>
-                     <ul class="nav nav-treeview">
-                         <li class="nav-item">
-                             <a href="#" class="nav-link active">
-                                 <i class="far fa-circle nav-icon"></i>
-                                 <p>Active Page</p>
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a href="#" class="nav-link">
-                                 <i class="far fa-circle nav-icon"></i>
-                                 <p>Inactive Page</p>
-                             </a>
-                         </li>
-                     </ul>
                  </li>
+
+            <li class="nav-item">
+
+                        <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <p>
+                            Laporan
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            @if (auth()->user()->level == "karyawan")
+                        <li class="nav-item">
+
+                            <a href="pages/charts/chartjs.html" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Presensi Perkaryawan</p>
+                            </a>
+                            @endif
+                        </li>
+                        @if (auth()->user()->level == "admin")
+                        <li class="nav-item">
+                            <a href="pages/charts/flot.html" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Presensi Keseluruhan</p>
+                            </a>
+                        </li>
+                        @endif
+                        </ul>
+                    </li>
+
+
                  <li class="nav-item">
-                     <a href="#" class="nav-link">
-                         <i class="nav-icon fas fa-th"></i>
+                     <a href="{{ route('logout') }}" class="nav-link">
+                         <i class="nav-icon fas fa-logout"></i>
                          <p>
-                             Simple Link
-                             <span class="right badge badge-danger">New</span>
+                             Logout
                          </p>
                      </a>
                  </li>
