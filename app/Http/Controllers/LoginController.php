@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use App\Models\User;
+
 
 class LoginController extends Controller
 {
@@ -30,6 +33,25 @@ class LoginController extends Controller
     {
         Auth::logout();
         return redirect('/');
+    }
+
+    public function registrasi()
+    {
+        return view('login.registrasi');
+    }
+
+    public function postRegistrasi(Request $request)
+    {
+        //dd($request->all());
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'level' => 'karyawan',
+            'password' => bcrypt($request->password),
+            'remember_token' => Str::random(60),
+        ]);
+        return redirect('/login');
+
     }
 
 }
