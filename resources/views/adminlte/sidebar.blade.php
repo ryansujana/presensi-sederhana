@@ -36,6 +36,7 @@
                    </a>
                  </li>
 
+                 @if(auth()->user()->level == "karyawan")
                  <li class="nav-item">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-chart-pie"></i>
@@ -44,8 +45,6 @@
                       <i class="right fas fa-angle-left"></i>
                     </p>
                   </a>
-
-                  @if(auth()->user()->level == "karyawan")
                   <ul class="nav nav-treeview">
                     <li class="nav-item">
                       <a href="{{ route('presensi-masuk') }}" class="nav-link">
@@ -75,18 +74,12 @@
                   </a>
                   <ul class="nav nav-treeview"> 
                     <li class="nav-item">
-                      <a href="pages/charts/chartjs.html" class="nav-link">
+                      <a href="{{ route('filter-data') }}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Presensi Perkaryawan</p>
                       </a>
                     </li>
-                    <li class="nav-item">
-                      <a href="pages/charts/flot.html" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Presensi Keseluruhan</p>
-                      </a>
-                    </li>
-
+                    
                   </ul>
                 </li>
                 @endif
