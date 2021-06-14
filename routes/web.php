@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PresensiController;
 
@@ -29,12 +29,14 @@ Route::post('/postregistrasi', [LoginController::class, 'postRegistrasi'])->name
 
 
 Route::group(["middleware" => ['auth','ceklevel:admin,karyawan']], function (){
-	Route::get('/home', [HomeController::class, 'index']);
+	Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
 Route::group(["middleware" => ['auth','ceklevel:karyawan']], function (){
 	// Adminlte
 	Route::get('/presensi-masuk', [PresensiController::class, 'index'])->name('presensi-masuk');
+	Route::get('/presensi-keluar', [PresensiController::class, 'keluar'])->name('presensi-keluar');
 	Route::post('/simpan-masuk', [PresensiController::class, 'store'])->name('simpan-masuk');
+	Route::post('ubah-presensi', [PresensiController::class, 'presensipulang'])->name('ubah-presensi');
 });
 
